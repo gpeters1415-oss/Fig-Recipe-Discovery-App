@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Fig"
+description = "A personal recipe discovery and social cooking app for collecting recipes, exploring what others cook, and finding meals that fit your table."
+version = "1.0.0"
+id = "artifacts/fig"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23082
+
+[services.development]
+run = "pnpm --filter @workspace/fig run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/fig", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/fig/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23082"
+BASE_PATH = "/"

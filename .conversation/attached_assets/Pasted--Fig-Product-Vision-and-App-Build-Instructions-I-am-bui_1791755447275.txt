@@ -1,0 +1,325 @@
+# Fig: Product Vision and App Build Instructions
+
+I am building **Fig**, a personalized recipe discovery and social cooking app. I want it to feel like a polished, professional consumer product with a recognizable identity, not a generic AI-generated website.
+
+Fig helps people collect recipes, discover what others are cooking, learn the tastes of the people they cook for, and decide what to make. The experience should feel personal, intuitive, visually beautiful, and genuinely useful.
+
+Build the app with a strong design foundation and functional interactions. Keep the architecture organized so we can expand it into a fully working product with authentication, a database, social features, and AI-powered recommendations.
+
+## 1. Brand and Visual Identity
+
+**The brand is Fig.**
+
+- Use fig-inspired colors as the primary brand palette, with rich fig purple, fresh green accents, and warm off-white backgrounds.
+- Make the design professional, refined, modern, and food-centric.
+- Use beautiful typography, editorial layouts, thoughtful spacing, and high-quality recipe photography.
+- Green should be an accent color rather than overpowering the entire interface.
+- Avoid generic SaaS dashboards, excessive rounded cards, childish illustrations, unnecessary gradients, and clutter.
+- Make the app feel like a premium food and lifestyle brand that could eventually become a widely used consumer app.
+- Design mobile-first, with intuitive bottom navigation on mobile and an appropriate desktop layout.
+- Use a consistent design system across all pages.
+
+**Important image rule:** Never AI-generate images for user profiles, people, recipes, or recipe boxes. If a user has not uploaded an image, leave the image area blank or use a deliberate neutral placeholder. Never invent a photo and present it as belonging to a real user, person, or recipe. For demonstration recipes, use actual available food photography where permitted, and clearly distinguish sample content from user-created content.
+
+## 2. Main Navigation
+
+Create five primary tabs:
+
+1. **Home**
+2. **Discover**
+3. **Recipe Box**
+4. **At My Table**
+5. **My Taste**
+
+Use these exact names in the interface.
+
+## 3. Home: Your Personal Cooking Hub
+
+The home page should feel personalized and active, with two distinct experiences.
+
+### The interactive Fig character
+
+Every time a user opens the app, display a small, charming Fig character that they can click or tap to start a meal-planning conversation.
+
+The character should be a subtle, polished brand mascot, not a childish cartoon. Give it a recognizable fig-inspired appearance that fits the professional visual identity. This is the one place where a character illustration is intentionally part of the brand.
+
+When the user clicks Fig, launch an interactive, conversational meal-planning flow.
+
+**Step 1: Craving**
+
+Fig asks: “What are you craving today?”
+
+Allow users to type their own answer or choose suggestions such as comfort food, something fresh, something spicy, something sweet, high protein, or surprise me.
+
+**Step 2: Who is eating?**
+
+Fig asks: “Who's at your table today?”
+
+Let the user select one or multiple people from their At My Table profiles, including themselves if they have a profile. Allow the user to continue without selecting anyone.
+
+Use the selected people's actual saved preferences, dietary restrictions, allergies, and appetite information when generating recommendations.
+
+**Step 3: Time**
+
+Fig asks: “How much time do you have?”
+
+Offer useful options such as 15 minutes, 30 minutes, 45 minutes, an hour, or no time limit.
+
+**Step 4: Familiarity**
+
+Fig asks: “Feeling adventurous or sticking with a favorite?”
+
+Offer three options:
+- Something new
+- Something I've made before
+- No preference
+
+**Step 5: Recommendations**
+
+Generate a curated set of recipe ideas from the user's own Recipe Box. Each recommendation should include the recipe image if one exists, recipe name, cooking time, and a short explanation of why it fits the user's answers and the selected diners' preferences.
+
+Prioritize recipes that match the craving, time limit, diners' dietary needs, appetite, and familiarity preference.
+
+Allow users to open a recipe, save it to a category, mark it as made, or ask Fig for another set of ideas.
+
+Do not invent recipes that are supposedly saved in the user's Recipe Box. If the user does not have enough matching recipes, explain that and offer to explore public recipes in Discover.
+
+The flow should feel conversational and delightful, with one clear question at a time, a visible sense of progress, and the ability to go back and change an answer.
+
+### Home page when Fig is not opened
+
+If the user does not start the Fig meal-planning flow, the normal home page should still offer reasons to explore.
+
+Include:
+
+**What Your Friends Are Making**
+- Show recipes that people the user follows have recently marked as made.
+- Include recipe photography when available, creator attribution, and relevant interactions.
+- Allow users to open a recipe, save it, or visit the creator's public Recipe Box.
+
+**Popular in Fig**
+- Show recipes that users are genuinely making, saving, or loving.
+- Distinguish between popularity based on cooking activity and popularity based on saves or hearts.
+- Do not fabricate popularity rankings or activity. Use clearly labeled sample data in the prototype and actual aggregated activity once a real backend exists.
+
+Also include a subtle entry point to the Fig meal-planning experience.
+
+## 4. Recipe Box: The Personal Cookbook
+
+The Recipe Box is the user's personal collection of recipes. Refer to it as the **Recipe Box** throughout the entire app. Do not call it a cookbook.
+
+It should feel like a beautiful, visual, searchable collection that users want to build over time.
+
+### Recipe categories and collections
+
+Users can create, rename, edit, and delete their own categories, similar to Pinterest boards.
+
+Example categories:
+- Light
+- Dinner Party
+- Weeknight Dinners
+- High Protein
+- Comfort Food
+- Desserts
+- Want to Make
+- Family Favorites
+
+These are examples, not mandatory fixed categories. Let users create categories that reflect their own habits.
+
+When a user adds or creates a recipe, they can select one or multiple categories to organize it. Let users add a recipe to more categories later without duplicating the recipe itself.
+
+Provide a clean visual grid of recipe cards, search, filtering, sorting, and category navigation.
+
+### Adding recipes
+
+Allow users to add a recipe through:
+- A recipe URL
+- A manual recipe form
+- An uploaded recipe image or screenshot
+- A recipe discovered in Fig
+- A family or personal recipe entered manually
+
+When importing a recipe, extract available information where technically supported and let the user review and correct it before saving. Preserve the original source and attribution. If importing is not implemented yet, build the interface and clearly label the feature as a prototype rather than pretending it works.
+
+Each recipe should support:
+- Name
+- Image, if supplied or legitimately available
+- Ingredients and quantities
+- Instructions
+- Preparation and cooking time
+- Servings
+- Notes and personal modifications
+- Categories
+- Source or creator
+- Visibility settings
+
+### Recipe privacy
+
+Every recipe has its own public or private setting.
+
+- Private recipes are visible only to their owner and people explicitly authorized to access them.
+- Public recipes can be discovered and viewed by other users.
+- Visibility must be enforced by the backend, not just hidden in the interface.
+
+Users should be able to change a recipe's visibility at any time.
+
+### Recipe Box privacy
+
+Each Recipe Box also has its own public or private setting.
+
+When creating a Recipe Box, users choose whether it is public or private. When adding a recipe directly into a specific box, default to that box's visibility setting and clearly show the visibility before saving.
+
+When creating a recipe outside a box, use a clearly communicated default privacy setting.
+
+**Important:** Making one Recipe Box public must never automatically make every other box or every recipe on the user's account public. A recipe's visibility and a box's visibility are separate settings. A private recipe must not become publicly accessible simply because it is associated with a public box.
+
+Design privacy controls so that users can easily understand who can see each item.
+
+## 5. At My Table: The People I Cook For
+
+This tab is a key differentiator for Fig. It helps users understand and remember the people they cook for so recommendations become more relevant over time.
+
+Let users create a profile for each person they regularly cook for.
+
+Each profile should support:
+- Name or nickname
+- Profile photo uploaded by the user
+- Favorite cuisines and meals
+- Favorite ingredients
+- Disliked ingredients and foods
+- Allergies and dietary restrictions
+- Preferred flavors and spice tolerance
+- Appetite and typical portion size
+- General food preferences
+- Recipes they have tried
+- Recipes they loved
+- Recipes they disliked
+- Ratings and feedback on meals
+
+Do not require users to fill out every field. Make profiles easy to create and progressively improve.
+
+### Appetite and portions
+
+Include a simple way to describe how much each person usually eats, such as a smaller appetite, average appetite, or larger appetite. Allow more specific portion preferences where useful.
+
+Use this information to help estimate quantities and serving sizes. Treat it as a preference rather than a fixed fact, and allow it to be updated.
+
+### Table groups and shared profiles
+
+Users should be able to create a group of people they commonly cook for, such as roommates, family, a partner, or dinner-party friends.
+
+Let users invite people to their table through a shareable invitation link.
+
+When an invited person joins, they can create their own account and profile, set their preferences, and participate in rating meals.
+
+Make the shared experience simple: a user should be able to select the people joining a meal and use their combined preferences to inform Fig's recommendations.
+
+### Meal ratings
+
+People at a table can rate meals they have actually tried.
+
+Include a simple rating interaction, with optional written feedback and a way to say whether they would eat the meal again.
+
+Keep feedback tied to the specific person and meal, and distinguish a person's rating from the cook's own rating.
+
+Respect consent and privacy: users should understand what information is shared with the group. Do not expose private personal notes or unrelated Recipe Box content to invited members.
+
+## 6. Discover: Explore Recipes and Creators
+
+Discover is the public inspiration and community area.
+
+Include:
+- Search and food categories
+- Public recipes
+- Public Recipe Boxes
+- Creator profiles
+- Recipes from followed creators
+- Popular recipes based on real user activity
+- Options to save recipes into a personal Recipe Box
+- Options to heart recipes
+- An “I've made this” action
+- Creator attribution and links to original sources
+
+Allow users to explore without requiring them to publish their own recipes.
+
+Recipe cards should be visually appealing, image-led when images are available, and consistent with Fig's visual identity.
+
+Users should be able to discover a public recipe and save it to a category in their own Recipe Box while preserving the original recipe's creator and source attribution.
+
+Do not allow users to edit another creator's original recipe. If they want to make changes, let them create a personal adaptation linked to the original.
+
+## 7. My Taste: Personalization
+
+Create a page that lets users view and manage what Fig knows about their food preferences.
+
+Include:
+- Favorite cuisines
+- Favorite ingredients
+- Disliked ingredients
+- Dietary preferences
+- Allergies
+- Preferred flavors
+- Cooking skill and complexity preferences
+- Typical cooking time
+- Appetite and portion preferences
+- Favorite and frequently cooked recipes
+- Recommendations the user liked or disliked
+
+Let users edit, remove, or correct preferences. Show a clear difference between preferences they explicitly entered and patterns Fig inferred from behavior.
+
+Allergies and explicit dietary restrictions must take priority over general taste preferences when filtering recommendations.
+
+## 8. AI and Recommendation Logic
+
+The recommendation experience should be grounded in actual data.
+
+Use this order when generating recommendations:
+
+1. Exclude recipes that violate known allergies or explicit dietary restrictions.
+2. Apply the requested cooking time and other hard constraints.
+3. Consider the craving and selected diners' preferences.
+4. Use appetite and serving information to help with quantities.
+5. Consider whether the user wants something new or familiar.
+6. Rank eligible recipes using previous cooking history, explicit feedback, saved recipes, and other relevant preference signals.
+7. Present a varied selection rather than three nearly identical meals.
+
+Distinguish between a recipe being saved, a recipe being cooked, and a recipe being loved. These signals have different meanings.
+
+Explain recommendations using information that actually exists. Do not claim that someone loves an ingredient or that a group enjoyed a meal unless there is supporting data.
+
+Use AI where it adds value, but do not treat a language model's output as the source of truth for allergies, recipe data, or privacy permissions.
+
+## 9. Functional Requirements
+
+Build reusable components and keep the code organized.
+
+For the initial prototype:
+- All five main tabs should navigate correctly.
+- Users should be able to open recipe details.
+- Users should be able to create and organize categories.
+- Users should be able to interact with sample recipes.
+- The Fig meal-planning conversation should be functional.
+- Users should be able to create and edit sample At My Table profiles.
+- Privacy controls should be represented clearly in the interface.
+- Include empty, loading, and error states.
+- Clearly distinguish working features from demonstration-only features.
+
+Do not pretend data is saved permanently if it is not. Do not claim that authentication, invitations, AI recommendations, recipe imports, ratings, or privacy enforcement work until they have actually been implemented and tested.
+
+Build with a clear path toward a real database, authentication, secure permissions, and persistent user profiles.
+
+## 10. Build in Stages
+
+Do not attempt to implement everything in a single pass.
+
+**Stage 1:** Establish the visual identity and build the Home, Recipe Box, and recipe detail screens. Create the Fig mascot and the interactive meal-planning flow.
+
+**Stage 2:** Build At My Table, including person profiles, preferences, appetite, and meal ratings.
+
+**Stage 3:** Build Discover, public recipes, public Recipe Boxes, follows, hearts, and cooking activity.
+
+**Stage 4:** Add real authentication, a database, secure public/private permissions, invitations, and persistent data.
+
+**Stage 5:** Implement recipe importing and personalized AI recommendations using real user data.
+
+Start with Stage 1. Show me the working result before expanding. Prioritize excellent design, intuitive navigation, and a cohesive experience over a large number of unfinished features.

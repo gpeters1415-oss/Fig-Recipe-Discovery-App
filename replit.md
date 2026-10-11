@@ -1,6 +1,6 @@
-# [Project name]
+# Fig
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Fig is a personal recipe discovery and social cooking app that helps people collect recipes, understand what their regular diners like, and decide what to make.
 
 ## Run & Operate
 
@@ -22,19 +22,29 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/fig` — Fig's React + Vite web app.
+- `artifacts/api-server` — shared API server scaffold; Fig's first-stage prototype does not use it.
+- `lib/api-spec/openapi.yaml` — shared API contract source of truth.
+- `lib/db/src/schema/` — shared database schema source.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Keep Fig's first release focused on the visual identity, Home, Recipe Box, recipe details, and the meal-planning conversation.
+- Clearly identify demonstration recipes and activity. Do not imply demo popularity, people, recipes, or recommendations are real.
+- Browser-local prototype state is not a user account or server persistence. Privacy controls in the prototype do not enforce access.
+- Do not present recipe importing, authentication, invitations, ratings, or AI recommendations as implemented until built and verified.
+- Keep the exact primary navigation labels: Home, Discover, Recipe Box, At My Table, My Taste.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Stage 1 is a polished, mobile-first recipe experience with a home cooking hub, an organized Recipe Box, recipe details, and a multi-step Fig meal-planning flow. Later stages expand At My Table, Discover, authentication, persistence, privacy enforcement, recipe import, and data-grounded recommendations.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Use fig purple, fresh green accents, warm off-white backgrounds, editorial typography, and real food photography where available.
+- Never generate images for recipes, people, or user profiles. Never use a generated image as if it belonged to a real person or recipe.
+- Keep the experience refined, professional, food-centric, and mobile-first; avoid generic SaaS styling, clutter, and childish illustrations.
+- Refer to the collection as “Recipe Box,” not “cookbook.”
 
 ## Gotchas
 
